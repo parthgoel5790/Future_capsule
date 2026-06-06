@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Future Capsule - Secure Your Memories</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="glow glow1"></div>
+    <div class="glow glow2"></div>
+    
+    <header class="navbar">
+        <div class="logo" id="navLogo">
+            <div class="logo_img">
+                <img src="https://www.shutterstock.com/image-vector/microchip-brain-interface-capsule-blue-260nw-2426246079.jpg" alt="LOGO">
+            </div>
+            <div class="logo_font">
+                <span>FUTURE LOOK</span>
+                <span class="f">CAPSULE</span>
+            </div>
+        </div>
+        <button class="mobile-menu-toggle" id="menuToggle" aria-label="Toggle Navigation">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <nav class="menu_icons" id="navMenu">
+            <ul class="controls">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#capsulesSection" class="nav-link">Capsules</a></li>
+                <li><a href="#aiBanner" class="nav-link">AI Preview</a></li>
+                <li><a href="#whyChooseUs" class="nav-link">About</a></li>
+                <li><a href="#footerContact" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="login">
+            <button class="login-btn" id="loginBtn">Login</button>
+        </div>
+    </header>
+
+    <main class="hero_section" id="home">
+        <div class="main_content">
+            <p class="para1">YOUR MEMORIES. SECURED FOR THE FUTURE.</p>
+            <h1>Store Today. <br>open <span class="tom">Tomorrow.</span></h1>
+            <p class="para2">Create a time capsule of your thoughts, memories<br>and dreams. Unlock them when the time is right.</p>
+            <div class="buttons">
+                <button class="btn button1" id="heroCreateBtn">Create Capsule</button>
+                <button class="btn button2" id="heroExploreBtn">Explore Capsule</button>
+            </div>
+        </div>
+        <div class="main_img">
+            <img src="main.png" alt="Capsule Graphic">
+        </div>
+    </main>
+
+    <section class="create_capsule" id="createSection">
+        <div class="outer_box">
+            <h2 class="card-title">
+                <i class="fa-regular fa-folder-open" style="color: #8B5CF6;"></i> Create New Capsule
+            </h2>
+            <form class="capsule-form" id="capsuleForm">
+                <div class="form-row-top">
+                    <div class="form-group">
+                        <label for="capsule-title">Capsule Title</label>
+                        <input type="text" id="capsule-title" placeholder="e.g. My 20s Dreams" class="input-field" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="unlock-date">Unlock Date</label>
+                        <input type="date" id="unlock-date" class="input-field" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="select-mood">Select Mood</label>
+                        <select id="select-mood" class="select-field">
+                            <option value="😊 Happy">😊 Happy</option>
+                            <option value="🤩 Excited">🤩 Excited</option>
+                            <option value="😌 Nostalgic">😌 Nostalgic</option>
+                            <option value="💼 Motivated">💼 Motivated</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row-bottom">
+                    <div class="form-group flex-2">
+                        <label for="your-message">Your Message</label>
+                        <textarea id="your-message" rows="5" placeholder="Write a message to your future self..." class="textarea-field" required></textarea>
+                    </div>
+                    <div class="form-group flex-1">
+                        <label>Upload Memory (Image)</label>
+                        <div class="upload-zone" id="uploadZone">
+                            <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                            <i class="fa-solid fa-cloud-arrow-up cloud-icon"></i>
+                            <p class="upload-text" id="uploadText"><span>Click to upload</span> or drag and drop</p>
+                            <p class="upload-subtext">PNG, JPG up to 5MB</p>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="submit-btn">
+                    <i class="fa-solid fa-lock"></i> Create Capsule
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <section class="your_capsules_section" id="capsulesSection">
+        <div class="section_wrapper">
+            <h2 class="capsules-title">
+                <i class="fa-solid fa-circle-plus" style="color: #0EA5E9;"></i> Your Capsules
+            </h2>
+            
+            <div class="timeline_container">
+                <div class="timeline_line"></div>
+                
+                <div class="no-capsules-msg" id="noCapsulesMsg">
+                    <i class="fa-solid fa-box-open"></i>
+                    <p>No capsules created yet. Fill the form above to lock your first memory!</p>
+                </div>
+
+                <div class="capsules_grid" id="capsulesGrid">
+                    </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal-overlay" id="capsuleModal">
+        <div class="modal-card">
+            <button class="modal-close-btn" id="modalClose">&times;</button>
+            <div class="modal-header">
+                <span id="modalMood" class="modal-mood-badge">😊 Happy</span>
+                <h2 id="modalTitle">Capsule Title Here</h2>
+                <p id="modalDate" class="modal-date-text">Unlocked on: 25 Dec 2026</p>
+            </div>
+            <div class="modal-body">
+                <h4 style="color: #38BDF8; margin-bottom: 8px; font-size: 0.9rem;">MESSAGE FROM THE PAST:</h4>
+                <p id="modalMessage">Your memory message will render right here...</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer" id="footerContact">
+        <div class="footer-container">
+            <h2 class="section-title" id="whyChooseUs">Why Future Look Capsule?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="icon-wrapper blue-glow"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h3>Secure & Private</h3>
+                    <p>Your memories are safe and only for your eyes.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-wrapper purple-glow"><i class="fa-regular fa-clock"></i></div>
+                    <h3>Time Locked</h3>
+                    <p>Open only when the right time comes.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-wrapper magenta-glow"><i class="fa-solid fa-brain"></i></div>
+                    <h3>AI Predictions</h3>
+                    <p>See what AI thinks your future might look like.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-wrapper cloud-glow"><i class="fa-solid fa-cloud-sun"></i></div>
+                    <h3>Easy & Fast</h3>
+                    <p>Create, save and manage your capsules easily.</p>
+                </div>
+            </div>
+
+            <div class="ai-preview-banner" id="aiBanner">
+                <div class="banner-left">
+                    <div class="avatar-container">
+                        <div class="ai-avatar"><i class="fa-solid fa-robot"></i></div>
+                    </div>
+                    <div class="banner-content">
+                        <h3><i class="fa-solid fa-sparkles"></i> AI Future Preview</h3>
+                        <div class="quote-box">
+                            <p id="aiQuote">“By 2030, you will be living in your dream home, running your own company and inspiring millions.”</p>
+                        </div>
+                        <span class="prediction-ts">AI Prediction based on your current thoughts</span>
+                    </div>
+                </div>
+                <div class="banner-right">
+                    <button class="cta-btn" id="aiBtn">Ask AI About My Future <i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </div>
+
+            <div class="footer-nav-row">
+                <div class="footer-col brand">
+                    <h3 class="footer-brand-title">FUTURE LOOK <span>CAPSULE</span></h3>
+                    <p>A place where your today meets your tomorrow.</p>
+                    <div class="footer-socials">
+                        <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home" class="footer-link">Home</a></li>
+                        <li><a href="#capsulesSection" class="footer-link">Capsules</a></li>
+                        <li><a href="#aiBanner" class="footer-link">AI Preview</a></li>
+                        <li><a href="#whyChooseUs" class="footer-link">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#" class="footer-link alert-link">Help Center</a></li>
+                        <li><a href="#" class="footer-link alert-link">Privacy Policy</a></li>
+                        <li><a href="#" class="footer-link alert-link">Terms & Conditions</a></li>
+                        <li><a href="#" class="footer-link alert-link">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col newsletter">
+                    <h4>Newsletter</h4>
+                    <p>Get updates and new features straight to your inbox.</p>
+                    <form class="newsletter-form" id="newsletterForm">
+                        <input type="email" id="newsletterEmail" placeholder="Enter your email" required>
+                        <button type="submit" aria-label="Subscribe"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Future Look Capsule. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
